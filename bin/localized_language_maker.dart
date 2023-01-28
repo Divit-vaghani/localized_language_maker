@@ -25,7 +25,11 @@ void main() async {
     allFuture.add(convertTo(translationType));
   }
   List<Map<String, dynamic>> doneFuture =
-      await Future.wait<Map<String, dynamic>>(allFuture);
+      await Future.wait<Map<String, dynamic>>(
+    allFuture,
+  );
 
-  print(doneFuture);
+  for (var value in doneFuture) {
+    print(JsonEncoder.withIndent(" " * 4).convert(value));
+  }
 }
