@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:compute/compute.dart';
 import 'package:translator/translator.dart';
 import 'model/translation_type.dart';
 import 'utils/converter.dart';
@@ -25,10 +24,9 @@ Future<void> main() async {
       from: 'en',
       to: single.key,
     );
-    // compute(convertTo,translationType);
+    // compute(convertTo,translationType).then((value) => print(value));
     allFuture.add(convertTo(translationType));
   }
-
   await Future.wait<Map<String, dynamic>>(allFuture);
   print(stopwatch.elapsed);
   stopwatch.stop();
