@@ -1,0 +1,12 @@
+{
+    "language": "Engels",
+    "@language": {
+        "description": "This is normal description"
+    },
+    "title": "Adres boek",
+    "settings": "Instellings",
+    "help": "Hulp en ondersteuning",
+    "suggestion": "Voorstel",
+    "about": "Oor ons",
+    "changeLanguage": "Verander app taal"
+}
