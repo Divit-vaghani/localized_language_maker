@@ -13,7 +13,7 @@ void main() async {
 
   Map<String, dynamic> data =
       jsonDecode((await file.readAsString(encoding: utf8)));
-  List<Future> allFuture = <Future>[];
+  List<Future<Map<String, dynamic>>> allFuture = [];
 
   for (MapEntry single in languageList.entries) {
     TranslationType translationType = TranslationType(
@@ -24,5 +24,8 @@ void main() async {
     );
     allFuture.add(convertTo(translationType));
   }
-  await Future.wait(allFuture);
+  List<Map<String, dynamic>> doneFuture =
+      await Future.wait<Map<String, dynamic>>(allFuture);
+
+  print(doneFuture);
 }
