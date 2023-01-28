@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:compute/compute.dart';
 import 'package:translator/translator.dart';
 import 'model/translation_type.dart';
 import 'utils/converter.dart';
 
-void main() async {
+Future<void> main() async {
+  Stopwatch stopwatch = Stopwatch();
   File file = File("assets/app_en.arb");
   File supportedLang = File("assets/supported_lang.txt");
 
@@ -15,6 +17,7 @@ void main() async {
       jsonDecode((await file.readAsString(encoding: utf8)));
   List<Future<Map<String, dynamic>>> allFuture = [];
 
+  stopwatch.start();
   for (MapEntry single in languageList.entries) {
     TranslationType translationType = TranslationType(
       translator: GoogleTranslator(),
@@ -22,14 +25,11 @@ void main() async {
       from: 'en',
       to: single.key,
     );
+    // compute(convertTo,translationType);
     allFuture.add(convertTo(translationType));
   }
-  List<Map<String, dynamic>> doneFuture =
-      await Future.wait<Map<String, dynamic>>(
-    allFuture,
-  );
 
-  for (var value in doneFuture) {
-    print(JsonEncoder.withIndent(" " * 4).convert(value));
-  }
+  await Future.wait<Map<String, dynamic>>(allFuture);
+  print(stopwatch.elapsed);
+  stopwatch.stop();
 }
