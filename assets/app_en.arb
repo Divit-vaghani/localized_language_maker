@@ -1,0 +1,12 @@
+{
+"language":"English",
+"@language":{
+    "description":"This is normal description"
+},
+"title":"Address Book",
+"settings":"Settings",
+"help":"Help & Support",
+"suggestion":"Suggestion",
+"about":"About us",
+"changeLanguage":"Change App Language"
+}
