@@ -13,8 +13,7 @@ void main() async {
 
   Map<String, dynamic> data =
       jsonDecode((await file.readAsString(encoding: utf8)));
-
-  List<Map<String, dynamic>> translatedListLanguage = <Map<String, dynamic>>[];
+  List<Future> allFuture = <Future>[];
 
   for (MapEntry single in languageList.entries) {
     TranslationType translationType = TranslationType(
@@ -23,14 +22,7 @@ void main() async {
       from: 'en',
       to: single.key,
     );
-
-    Map<String, dynamic> translation = await convertTo(translationType);
-
-    translatedListLanguage.add(translation);
-
-    await File("assets/arb/app_${single.key}.arb").writeAsString(
-      JsonEncoder.withIndent(" " * 4).convert(translation),
-    );
+    allFuture.add(convertTo(translationType));
   }
-  print("Total Translated Language : ${translatedListLanguage.length}");
+  await Future.wait(allFuture);
 }
