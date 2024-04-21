@@ -6,8 +6,8 @@ import 'utils/converter.dart';
 
 Future<void> main() async {
   Stopwatch stopwatch = Stopwatch();
-  File file = File("assets/app_en.arb");
-  File supportedLang = File("assets/supported_lang.txt");
+  File file = File("/home/divit-vaghani/Documents/localized_language_maker/assets/app_en.arb");
+  File supportedLang = File("/home/divit-vaghani/Documents/localized_language_maker/assets/supported_lang.txt");
 
   Map<String, dynamic> languageList =
       jsonDecode(await supportedLang.readAsString(encoding: utf8));
